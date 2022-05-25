@@ -1,0 +1,48 @@
+CREATE TABLE accounts (
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username varchar(255),
+    password varchar(255),
+    email varchar(255) NOT NULL
+);
+
+CREATE TABLE learning_style (
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id int,
+    result_linguistic float,
+    result_logical float,
+    result_spatial float,
+    result_bodily float,
+    result_musical float,
+    result_interpersonal float,
+    result_intrapersonal float,
+    result_naturalist float
+);
+
+CREATE TABLE interest (
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id int,
+    result_realistic float,
+    result_investigate float,
+    result_artistic float,
+    result_social float,
+    result_enterprising float,
+    result_conventional float
+);
+
+CREATE TABLE academic (
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id int,
+    result_math float,
+    result_science float,
+    result_social_science float,
+    result_english float
+);
+
+CREATE TABLE result (
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id int,
+    stem float,
+    humss float,
+    abm float,
+    gas float
+);

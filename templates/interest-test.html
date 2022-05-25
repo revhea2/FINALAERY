@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Aery</title>
+
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrapp.min.css') }}"
+          rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/webpage.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/lightbox.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/questionnaires.css') }}">
+
+
+</head>
+
+<style>
+    .form-inline {  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.button{
+    background-color: #a12c2f;
+    border: none;
+    color: white;
+    padding: 10px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.button:hover {
+  background-color: #a13e41;
+}
+</style>
+
+<script>
+    function handleForm() {
+        alert('debug')
+        return false;
+    }
+</script>
+
+<body>
+
+
+<!-- Sub Header -->
+<div class="sub-header">
+    <div>
+        <div class="row">
+            <div class="col-lg-8 col-sm-8">
+                <div class="left-content">
+                    <p>An Intelligent Data Analysis of Students Learning Style, Academic Achievements and Interest
+                        in
+                        Recommending Academic Tracks.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div>
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="/" class="logo">
+                        AERY
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="/">Home</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Strand</a>
+                            <ul class="sub-menu">
+                                <li><a href="/stem">STEM</a></li>
+                                <li><a href="/abm">ABM</a></li>
+                                <li><a href="/humss">HUMSS</a></li>
+                                <li><a href="/gas">GAS</a></li>
+                            </ul>
+                            <!-- <li class="scroll-to-section"><a href="#apply">Apply Now</a></li> -->
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Account</a>
+                            <ul class="sub-menu">
+                                <li><a href="/profile">Profile</a></li>
+                                <li><a href="/aery/logout">Logout</a></li>
+                            </ul>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<section class="heading-page header-text" id="top">
+    <div>
+        <div>
+            <div>
+                <h2>QUESTIONNAIRES</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="meetings-page" id="meetings">
+    <div class="container">
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <div class="meeting-single-item">
+
+                            <div class="down-content">
+                                <div>
+                                    <form action="{{ url_for('save_interest') }}" method="post">
+
+                                        <!--QUESTIONNAIRES FOR REALISTIC-->
+                                        <div class="d-block" id="1">
+                                            <center>
+                                                <h2>R.I.A.S.E.C. (INTEREST)</h2>
+                                            </center><br>
+                
+                                            <div class="col-225">
+                                                <label for="realistic"><b>REALISTIC</b></label><br>
+
+                                            </div>
+
+                                            <div class="col-775">
+                                                <label for="ling"><b>Read each statement. If you agree with the
+                                                    statement, click the box, if not just skip it. There are no wrong
+                                                    answers!.</b></label><br>
+                                                <label> <input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to work on cars.
+                                                </label><br>
+
+                                                <label> <input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to build things.
+                                                </label><br>
+
+                                                <label> <input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to take care of animals.
+                                                </label><br>
+
+                                                <label> <input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like putting things together or
+                                                    assembling things.
+                                                </label><br>
+
+                                                <label> <input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to cook.
+                                                </label><br>
+
+                                                <label><input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am a practical person.
+                                                </label><br>
+
+                                                <label><input class="check_realistic" name="check_realistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like working outdoors.
+                                                </label><br>
+                                            </div>
+                                        </div>
+
+
+                                        <!--QUESTIONNAIRES FOR INVESTIGATE-->
+                                        <div class="d-none" id="2">
+                                            <center>
+                                                <h2>R.I.A.S.E.C. (INTEREST)</h2>
+                                            </center><br>
+                                            <div class="col-225">
+                                                <label for="investigate"><b>INVESTIGATE</b></label><br>
+                                            </div>
+
+                                            <div class="col-775">
+                                                <label for="invest"><b>Read each statement. If you agree with the
+                                                    statement, click the box, if not just skip it. There are no wrong
+                                                    answers!.</b></label><br>
+                                                <label> <input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to do puzzles.
+                                                </label><br>
+
+                                                <label> <input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to do experiments.
+                                                </label><br>
+
+                                                <label> <input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I enjoy science.
+                                                </label><br>
+
+                                                <label> <input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I enjoy trying to figure out how
+                                                    things work.
+                                                </label><br>
+
+                                                <label> <input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to analyze things
+                                                    (problems/situations).
+                                                </label><br>
+
+                                                <label><input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like working with numbers or
+                                                    charts.
+                                                </label><br>
+
+                                                <label><input class="check_investigate" name="check_investigate" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I'm good at math.
+                                                </label><br>
+                                            </div>
+                                        </div>
+
+                                        <!--QUESTIONNAIRES FOR ARTISTIC-->
+                                        <div class="d-none" id="3">
+                                            <center>
+                                                <h2>R.I.A.S.E.C. (INTEREST)</h2>
+                                            </center><br>
+                                            <div class="col-225">
+                                                <label for="artistic"><b>ARTISTIC</b></label><br>
+                                            </div>
+
+                                            <div class="col-775">
+                                                <label for="art"><b>Read each statement. If you agree with the
+                                                    statement, click the box, if not just skip it. There are no wrong
+                                                    answers!.</b></label><br>
+                                                <label> <input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am good at working independently.
+                                                </label><br>
+
+                                                <label> <input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to read about art and music.
+                                                </label><br>
+
+                                                <label> <input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I enjoy creative writing.
+                                                </label><br>
+
+                                                <label> <input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am a creative person.
+                                                </label><br>
+
+                                                <label> <input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to play instruments or sing.
+                                                </label><br>
+
+                                                <label><input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like acting in plays.
+                                                </label><br>
+
+                                                <label><input class="check_artistic" name="check_artistic" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to draw.
+                                                </label><br>
+                                            </div>
+                                        </div>
+
+
+                                        <!--QUESTIONNAIRES FOR SOCIAL-->
+                                        <div class="d-none" id="4">
+                                            <center>
+                                                <h2>R.I.A.S.E.C. (INTEREST)</h2>
+                                            </center><br>
+                                            <div class="col-225">
+                                                <label for="social"><b>SOCIAL</b></label><br>
+                                            </div>
+
+                                            <div class="col-775">
+                                                <label for="soc"><b>Read each statement. If you agree with the
+                                                    statement, click the box, if not just skip it. There are no wrong
+                                                    answers!.</b></label><br>
+                                                <label> <input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to work in teams.
+                                                </label><br>
+
+                                                <label> <input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to teach or train people.
+                                                </label><br>
+
+                                                <label> <input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like trying to help people solve
+                                                    their problems.
+                                                </label><br>
+
+                                                <label> <input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am interested in healing people.
+                                                </label><br>
+
+                                                <label> <input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I enjoy learning about other
+                                                    cultures.
+                                                </label><br>
+
+                                                <label><input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to get into discussions about
+                                                    issues
+                                                </label><br>
+
+                                                <label><input class="check_social" name="check_social" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like helping people
+                                                </label><br>
+                                            </div>
+                                        </div>
+
+
+                                        <!--QUESTIONNAIRES FOR ENTERPRISING-->
+                                        <div class="d-none" id="5">
+                                            <center>
+                                                <h2>R.I.A.S.E.C. (INTEREST)</h2>
+                                            </center><br>
+                                            <div class="col-225">
+                                                <label for="enterprising"><b>ENTERPRISING</b></label><br>
+                                            </div>
+
+                                            <div class="col-775">
+                                                <label for="enter"><b>Read each statement. If you agree with the
+                                                    statement, click the box, if not just skip it. There are no wrong
+                                                    answers!.</b></label><br>
+                                                <label> <input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am an ambitious person, I set my
+                                                    goals for myself.
+                                                </label><br>
+
+                                                <label> <input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to try to influence or
+                                                    persuade people.
+                                                </label><br>
+
+                                                <label> <input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like selling things.
+                                                </label><br>
+
+                                                <label> <input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am quick to take on new
+                                                    responsibilities.
+                                                </label><br>
+
+                                                <label><input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I would like to start my own
+                                                    business.
+                                                </label><br>
+
+                                                <label><input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to lead.
+                                                </label><br>
+
+                                                <label> <input class="check_enterprising" name="check_enterprising" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to give speeches.
+                                                </label><br>
+                                            </div>
+                                        </div>
+
+                                        <!--QUESTIONNAIRES FOR CONVENTIONAL-->
+                                        <div class="d-none" id="6">
+                                            <center>
+                                                <h2>R.I.A.S.E.C. (INTEREST)</h2>
+                                            </center><br>
+                                            <div class="col-225">
+                                                <label for="conventional"><b>CONVENTIONAL</b></label><br>
+                                            </div>
+
+                                            <div class="col-775">
+                                                <label for="conve"><b>Read each statement. If you agree with the
+                                                    statement, click the box, if not just skip it. There are no wrong
+                                                    answers!.</b></label><br>
+                                                <label> <input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to organize things,
+                                                    (files/desks/offices).
+                                                </label><br>
+
+                                                <label> <input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to have clear instructions to
+                                                    follow.
+                                                </label><br>
+
+                                                <label> <input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I wouldn't mind working 8 hours per
+                                                    day in an office/school.
+                                                </label><br>
+
+                                                <label> <input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I pay attention to details.
+                                                </label><br>
+
+                                                <label> <input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I like to do filling or typing.
+                                                </label><br>
+
+                                                <label><input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I am good at keeping records of my
+                                                    work.
+                                                </label><br>
+
+                                                <label><input class="check_conventional" name="check_conventional" value=1 type="checkbox">
+                                                    <span class="checkmark"></span>I would like to work in a office.
+                                                </label><br>
+                                            </div>
+                                        </div><hr>
+
+
+                                        <div>
+                                            <input type="submit" class="d-none" id="form-submit" value="Submit">
+                                            <div  class="form-inline">
+                                            <input type="button" class="d-none button" id="prev" value="Prev" onclick="moveQuestion(false)">&nbsp&nbsp
+                                            <input type="button" class="d-block button" id="next" value="Next" onclick="moveQuestion(true)">
+                                        </div>
+                                        </div>
+                                        <br>
+
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <br>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="footer">
+        <p>A.E.R.Y.</p>
+    </div>
+</section>
+
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrapp.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/riasec.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/isotope.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/lightbox.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/slick-slider.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+<script>
+
+    //according to loftblog tut
+    $('.nav li:first').addClass('active')
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+
+
+</script>
+</body>
+
+
+</body>
+
+</html>
