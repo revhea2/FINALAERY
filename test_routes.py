@@ -89,6 +89,7 @@ def profile():
 
         # to percentages --------------------------------------------------
 
+        is_enough = is_data_enough(learning_style, interest)
         if learning_style:
             for key in learning_style.keys():
                 if key != "id" and key != "user_id":
@@ -104,7 +105,7 @@ def profile():
                                results=final_result,
                                learning_style=learning_style,
                                academic=academic, interest=interest,
-                               is_data_enough=is_data_enough(learning_style, interest),
+                               is_data_enough=is_enough,
                                first_load=first_load
                                )
     return redirect(url_for('login'))
@@ -186,7 +187,9 @@ def is_data_enough(learning_style, interest):
         return False
 
     learning_style_feature_count = 0
-    for checks in learning_style.values():
+
+    for key, checks in learning_style.items():
+
         if checks >= REQUIRED_NO_CHECKS:
             learning_style_feature_count += 1
 
