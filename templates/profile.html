@@ -166,7 +166,7 @@
                                                         <td>
                                                             Linguistic: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_linguistic'] }} %</p>
+                                                            <p>{{ learning_style['result_linguistic'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -180,7 +180,7 @@
                                                         <td>
                                                             Realistic: &nbsp
                                                             {% if interest %}
-                                                            <p>{{ interest['result_realistic'] }} %</p>
+                                                            <p>{{ interest['result_realistic'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -190,7 +190,7 @@
                                                         <td>
                                                             Logical-Mathematical: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_logical'] }} %</p>
+                                                            <p>{{ learning_style['result_logical'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -204,7 +204,7 @@
                                                         <td>
                                                             Investigate: &nbsp
                                                             {% if interest %}
-                                                            <p>{{ interest['result_investigate'] }} %</p>
+                                                            <p>{{ interest['result_investigate'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -214,7 +214,7 @@
                                                         <td>
                                                             Spatial: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_spatial'] }} %</p>
+                                                            <p>{{ learning_style['result_spatial'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -228,7 +228,7 @@
                                                         <td>
                                                             Artistic: &nbsp
                                                             {% if interest %}
-                                                            <p>{{ interest['result_artistic'] }} %</p>
+                                                            <p>{{ interest['result_artistic'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -238,7 +238,7 @@
                                                         <td>
                                                             Bodily-Kinesthetic: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_bodily'] }} %</p>
+                                                            <p>{{ learning_style['result_bodily'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -252,7 +252,7 @@
                                                         <td>
                                                             Social: &nbsp
                                                             {% if interest %}
-                                                            <p>{{ interest['result_social'] }} %</p>
+                                                            <p>{{ interest['result_social'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -262,7 +262,7 @@
                                                         <td>
                                                             Musical: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_musical'] }} %</p>
+                                                            <p>{{ learning_style['result_musical'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -272,7 +272,7 @@
                                                         <td>
                                                             Enterprising: &nbsp
                                                             {% if interest %}
-                                                            <p>{{ interest['result_enterprising'] }} %</p>
+                                                            <p>{{ interest['result_enterprising'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -282,7 +282,7 @@
                                                         <td>
                                                             Interpersonal: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_interpersonal'] }} %</p>
+                                                            <p>{{ learning_style['result_interpersonal'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -292,7 +292,7 @@
                                                         <td>
                                                             Conventional: &nbsp
                                                             {% if interest %}
-                                                            <p>{{ interest['result_conventional'] }} %</p>
+                                                            <p>{{ interest['result_conventional'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -302,7 +302,7 @@
                                                         <td>
                                                             Intrapersonal: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_intrapersonal'] }} %</p>
+                                                            <p>{{ learning_style['result_intrapersonal'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -316,7 +316,7 @@
                                                         <td>
                                                             Naturalist: &nbsp
                                                             {% if learning_style %}
-                                                            <p>{{ learning_style['result_naturalist'] }} %</p>
+                                                            <p>{{ learning_style['result_naturalist'] }}</p>
                                                             {% else %}
                                                             <p>...</p>
                                                             {% endif %}
@@ -329,28 +329,22 @@
                                                 </table>
                                             </div>
 
-                                            {% if first_load == false and is_data_enough == false %}
-                                            <br>
-                                            <div class="alert alert-warning" role="alert">
-                                                <p style="color: red;">
-                                                    The system needs more information to safely predict your strand.
-                                                <p/>
-                                            </div>
+<!--                                            {% if first_load == false and is_data_enough == false %}-->
+<!--                                            <br>-->
+<!--                                            <div class="alert alert-warning" role="alert">-->
+<!--                                                <p style="color: red;">-->
+<!--                                                    The system needs more information to safely predict your strand.-->
+<!--                                                <p/>-->
+<!--                                            </div>-->
 
-                                            {% endif %}
+<!--                                            {% endif %}-->
 
 
                                             <br>
                                             <center>
                                                 <form action="{{ url_for('generate') }}">
-                                                    {% if is_data_enough == true %}
                                                     <input type="submit" class="button" value="Generate">
-                                                    {% else %}
-                                                    <input type="submit" style="background-color: #e5e7eb"
-                                                           class="button" value="Generate" disabled>
-                                                    {% endif %}
                                                 </form>
-
                                             </center>
                                             <br><br>
 

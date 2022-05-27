@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
+from utils.category import *
 
 # Utilities
 import re
