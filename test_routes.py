@@ -93,12 +93,12 @@ def profile():
         if learning_style:
             for key in learning_style.keys():
                 if key != "id" and key != "user_id":
-                    learning_style[key] = f"{int(learning_style[key])} out of 8"
+                    learning_style[key] = f"{round(learning_style[key] * 100 / 8, 2)}%"
 
         if interest:
             for key in interest.keys():
                 if key != "id" and key != "user_id":
-                    interest[key] = f"{int(interest[key])} out of 7"
+                    interest[key] = f"{round(interest[key] * 100 / 7, 2)}%"
 
         return render_template('profile.html',
                                username=session['email'],
