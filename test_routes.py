@@ -101,7 +101,7 @@ def profile():
                     interest[key] = f"{round(interest[key] * 100 / 7, 2)}%"
 
         return render_template('profile.html',
-                               username=session['email'],
+                               username=session['username'],
                                results=final_result,
                                learning_style=learning_style,
                                academic=academic, interest=interest,
@@ -153,7 +153,7 @@ def generate():
         cursor, learning_style, academic, interest = get_test_results()
 
         if not (learning_style and academic and interest):
-            return render_template('profile.html', username=session['email'], result=None,
+            return render_template('profile.html', username=session['username'], result=None,
                                    learning_style=learning_style,
                                    academic=academic, interest=interest)
 
