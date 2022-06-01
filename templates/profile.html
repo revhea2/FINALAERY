@@ -329,23 +329,28 @@
                                                 </table>
                                             </div>
 
-<!--                                            {% if first_load == false and is_data_enough == false %}-->
-<!--                                            <br>-->
-<!--                                            <div class="alert alert-warning" role="alert">-->
-<!--                                                <p style="color: red;">-->
-<!--                                                    The system needs more information to safely predict your strand.-->
-<!--                                                <p/>-->
-<!--                                            </div>-->
+                                            {% if first_load == false and is_data_enough == false %}
+                                            <br>
+                                            <div class="alert alert-warning" role="alert">
+                                                <p style="color: red;">
+                                                    The system needs more information to safely predict your strand.
+                                                <p/>
+                                            </div>
 
-<!--                                            {% endif %}-->
+                                            {% endif %}
 
 
                                             <br>
                                             <center>
                                                 <form action="{{ url_for('generate') }}">
+                                                    {% if is_data_enough == true %}
                                                     <input type="submit" class="button" value="Generate">
+                                                    {% else %}
+                                                    <input type="submit" style="background-color: #e5e7eb"
+                                                           class="button" value="Generate" disabled>
+                                                    {% endif %}
                                                 </form>
-                                            </center>
+                                            </center>h
                                             <br><br>
 
                                             <h4>SUITABLE STRAND FOR YOU IS:

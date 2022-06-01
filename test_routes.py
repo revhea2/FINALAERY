@@ -83,13 +83,13 @@ def profile():
             results.sort(key=lambda x: -x[1])
             final_result = results[0][0]
 
-        # first_load = False
-        # if not learning_style and not academic and not interest:
-        #     first_load = True
+        first_load = False
+        if not learning_style and not academic and not interest:
+            first_load = True
 
         # to percentages --------------------------------------------------
-        #
-        # is_enough = is_data_enough(learning_style, interest)
+
+        is_enough = is_data_enough(learning_style, interest)
         if learning_style:
             for key in learning_style.keys():
                 if key != "id" and key != "user_id":
@@ -105,8 +105,8 @@ def profile():
                                results=final_result,
                                learning_style=learning_style,
                                academic=academic, interest=interest,
-                               # is_data_enough=is_enough,
-                               # first_load=first_load
+                               is_data_enough=is_enough,
+                               first_load=first_load
                                )
     return redirect(url_for('login'))
 
@@ -159,14 +159,8 @@ def generate():
 
         x = get_x_value(learning_style, academic, interest)
 
-        is_enough = is_data_enough(learning_style, interest)
+        prob_stem, prob_humss, prob_abm, prob_gas = predict_probabilities([x])[0]
 
-        if is_enough:
-            prob_stem, prob_humss, prob_abm, prob_gas = predict_probabilities([x])[0]
-            print("Used RandomForest")
-        else:
-            prob_stem, prob_humss, prob_abm, prob_gas = WeightFactorAlgorithm(x)
-            print("Used WeightFactorAlgorithm")
 
         if academic["result_math"] < 85 or academic["result_science"] < 85:
             prob_stem = 0
@@ -215,3 +209,6 @@ def is_data_enough(learning_style, interest):
 def predict_probabilities(data_from_user):
     probabilities = loaded_model.predict_proba(data_from_user)
     return probabilities
+
+
+
