@@ -91,14 +91,30 @@ def profile():
 
         is_enough = is_data_enough(learning_style, interest)
         if learning_style:
+            total = 0
             for key in learning_style.keys():
                 if key != "id" and key != "user_id":
-                    learning_style[key] = f"{round(learning_style[key] * 100 / 8, 2)}%"
+                    percentage = round(learning_style[key] * 100 / 8, 2)
+                    total += percentage
+                    learning_style[key] = percentage
+
+            for key in learning_style.keys():
+                if key != "id" and key != "user_id":
+                    percentage = learning_style[key]
+                    learning_style[key] = f"{round(percentage / total * 100, 2)}%"
 
         if interest:
+            total = 0
             for key in interest.keys():
                 if key != "id" and key != "user_id":
-                    interest[key] = f"{round(interest[key] * 100 / 7, 2)}%"
+                    percentage = round(interest[key] * 100 / 7, 2)
+                    total += percentage
+                    interest[key] = percentage
+
+            for key in interest.keys():
+                if key != "id" and key != "user_id":
+                    percentage = interest[key]
+                    interest[key] = f"{round(percentage / total * 100, 2)}%"
 
         return render_template('profile.html',
                                username=session['username'],
@@ -161,7 +177,6 @@ def generate():
 
         prob_stem, prob_humss, prob_abm, prob_gas = predict_probabilities([x])[0]
 
-
         if academic["result_math"] < 85 or academic["result_science"] < 85:
             prob_stem = 0
 
@@ -209,6 +224,3 @@ def is_data_enough(learning_style, interest):
 def predict_probabilities(data_from_user):
     probabilities = loaded_model.predict_proba(data_from_user)
     return probabilities
-
-
-
