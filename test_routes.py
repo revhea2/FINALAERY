@@ -101,7 +101,10 @@ def profile():
             for key in learning_style.keys():
                 if key != "id" and key != "user_id":
                     percentage = learning_style[key]
-                    learning_style[key] = f"{round(percentage / total * 100, 2)}%"
+                    if total > 0:
+                        learning_style[key] = f"{round(percentage / total * 100, 2)}%"
+                    else:
+                        learning_style[key] = "0%"
 
         if interest:
             total = 0
@@ -114,7 +117,10 @@ def profile():
             for key in interest.keys():
                 if key != "id" and key != "user_id":
                     percentage = interest[key]
-                    interest[key] = f"{round(percentage / total * 100, 2)}%"
+                    if total > 0:
+                        interest[key] = f"{round(percentage / total * 100, 2)}%"
+                    else:
+                        interest[key] = "0%"
 
         return render_template('profile.html',
                                username=session['username'],
