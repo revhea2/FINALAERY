@@ -87,6 +87,7 @@ def profile():
         if not learning_style and not academic and not interest:
             first_load = True
 
+        has_missing = False
         # to percentages --------------------------------------------------
 
         is_enough = is_data_enough(learning_style, interest)
@@ -97,7 +98,6 @@ def profile():
                     percentage = round(learning_style[key] * 100 / 8, 2)
                     total += percentage
                     learning_style[key] = percentage
-
             for key in learning_style.keys():
                 if key != "id" and key != "user_id":
                     percentage = learning_style[key]
@@ -105,6 +105,8 @@ def profile():
                         learning_style[key] = f"{round(percentage / total * 100, 2)}%"
                     else:
                         learning_style[key] = "0%"
+            if total == 0:
+                has_missing = True
 
         if interest:
             total = 0
@@ -113,7 +115,6 @@ def profile():
                     percentage = round(interest[key] * 100 / 7, 2)
                     total += percentage
                     interest[key] = percentage
-
             for key in interest.keys():
                 if key != "id" and key != "user_id":
                     percentage = interest[key]
@@ -121,6 +122,11 @@ def profile():
                         interest[key] = f"{round(percentage / total * 100, 2)}%"
                     else:
                         interest[key] = "0%"
+            if total == 0:
+                has_missing = True
+
+        if not academic:
+            has_missing = True
 
         return render_template('profile.html',
                                username=session['username'],
@@ -128,7 +134,8 @@ def profile():
                                learning_style=learning_style,
                                academic=academic, interest=interest,
                                is_data_enough=is_enough,
-                               first_load=first_load
+                               first_load=first_load,
+                               has_missing=has_missing,
                                )
     return redirect(url_for('login'))
 
@@ -198,8 +205,9 @@ def generate():
 # Helper functions - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-REQUIRED_NO_FEATURES = 3
-REQUIRED_NO_CHECKS = 4
+THRESHOLD_NO_FEATURES_LEARNING_STYLE = 6
+THRESHOLD_NO_FEATURES_INTEREST = 4
+THRESHOLD_NO_CHECKS = 1
 
 
 def is_data_enough(learning_style, interest):
@@ -210,18 +218,18 @@ def is_data_enough(learning_style, interest):
 
     for key, checks in learning_style.items():
 
-        if checks >= REQUIRED_NO_CHECKS:
+        if checks >= THRESHOLD_NO_CHECKS:
             learning_style_feature_count += 1
 
-    if learning_style_feature_count < REQUIRED_NO_FEATURES:
+    if learning_style_feature_count < THRESHOLD_NO_FEATURES_LEARNING_STYLE:
         return False
 
     interest_feature_count = 0
     for checks in interest.values():
-        if checks >= REQUIRED_NO_CHECKS:
+        if checks >= THRESHOLD_NO_CHECKS:
             interest_feature_count += 1
 
-    if interest_feature_count < REQUIRED_NO_FEATURES:
+    if interest_feature_count < THRESHOLD_NO_FEATURES_INTEREST:
         return False
 
     return True
