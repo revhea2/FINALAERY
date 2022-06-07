@@ -64,70 +64,54 @@ def save_academic():
     return redirect(url_for('login'))
 
 
+def transform_to_percentage(test_type, number_of_questions):
+    total = 0
+    for key in test_type.keys():
+        if key != "id" and key != "user_id":
+            percentage = round(test_type[key] * 100 / number_of_questions, 2)
+            total += percentage
+            test_type[key] = percentage
+    for key in test_type.keys():
+        if key != "id" and key != "user_id":
+            percentage = test_type[key]
+            if total > 0:
+                test_type[key] = f"{round(percentage / total * 100, 2)}%"
+            else:
+                test_type[key] = "0%"
+    if total == 0:
+        return True
+
+    return False
+
+
+
+
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
         cursor, learning_style, academic, interest = get_test_results()
         cursor.execute(f'SELECT * FROM result WHERE user_id={session["id"]} ORDER BY id DESC LIMIT 1')
-
         result = cursor.fetchone()
-
         mysql.connection.commit()
-
         final_result = None
         if result:
             results = [("stem", round(result["stem"] * 100, 2)), ("humss", round(result["humss"] * 100, 2)),
                        ("abm", round(result["abm"] * 100, 2)),
                        ("gas", round(result["gas"] * 100, 2))]
-
             results.sort(key=lambda x: -x[1])
             final_result = results[0][0]
-
         first_load = False
         if not learning_style and not academic and not interest:
             first_load = True
 
         has_missing = False
-        # to percentages --------------------------------------------------
-
         is_enough = is_data_enough(learning_style, interest)
         if learning_style:
-            total = 0
-            for key in learning_style.keys():
-                if key != "id" and key != "user_id":
-                    percentage = round(learning_style[key] * 100 / 8, 2)
-                    total += percentage
-                    learning_style[key] = percentage
-            for key in learning_style.keys():
-                if key != "id" and key != "user_id":
-                    percentage = learning_style[key]
-                    if total > 0:
-                        learning_style[key] = f"{round(percentage / total * 100, 2)}%"
-                    else:
-                        learning_style[key] = "0%"
-            if total == 0:
-                has_missing = True
-
+            has_missing = has_missing or transform_to_percentage(learning_style, 8)
         if interest:
-            total = 0
-            for key in interest.keys():
-                if key != "id" and key != "user_id":
-                    percentage = round(interest[key] * 100 / 7, 2)
-                    total += percentage
-                    interest[key] = percentage
-            for key in interest.keys():
-                if key != "id" and key != "user_id":
-                    percentage = interest[key]
-                    if total > 0:
-                        interest[key] = f"{round(percentage / total * 100, 2)}%"
-                    else:
-                        interest[key] = "0%"
-            if total == 0:
-                has_missing = True
-
+            has_missing = has_missing or transform_to_percentage(interest, 7)
         if not academic:
             has_missing = True
-
         return render_template('profile.html',
                                username=session['username'],
                                results=final_result,
@@ -210,6 +194,7 @@ THRESHOLD_NO_FEATURES_INTEREST = 4
 THRESHOLD_NO_CHECKS = 1
 THRESHOLD_RELIABLE_CHECKS = 3
 
+
 def is_data_enough(learning_style, interest):
     if not learning_style or not interest:
         return False
@@ -226,7 +211,6 @@ def is_data_enough(learning_style, interest):
                 reliable_checks += 1
     if learning_style_feature_count < THRESHOLD_NO_FEATURES_LEARNING_STYLE or reliable_checks == 0:
         return False
-
 
     reliable_checks = 0
     interest_feature_count = 0
