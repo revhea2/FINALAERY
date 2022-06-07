@@ -208,7 +208,7 @@ def generate():
 THRESHOLD_NO_FEATURES_LEARNING_STYLE = 6
 THRESHOLD_NO_FEATURES_INTEREST = 4
 THRESHOLD_NO_CHECKS = 1
-
+THRESHOLD_RELIABLE_CHECKS = 3
 
 def is_data_enough(learning_style, interest):
     if not learning_style or not interest:
@@ -216,20 +216,27 @@ def is_data_enough(learning_style, interest):
 
     learning_style_feature_count = 0
 
+    reliable_checks = 0
+
     for key, checks in learning_style.items():
-
-        if checks >= THRESHOLD_NO_CHECKS:
-            learning_style_feature_count += 1
-
-    if learning_style_feature_count < THRESHOLD_NO_FEATURES_LEARNING_STYLE:
+        if key != "id" and key != "user_id":
+            if checks >= THRESHOLD_NO_CHECKS:
+                learning_style_feature_count += 1
+            if checks >= THRESHOLD_RELIABLE_CHECKS:
+                reliable_checks += 1
+    if learning_style_feature_count < THRESHOLD_NO_FEATURES_LEARNING_STYLE or reliable_checks == 0:
         return False
 
-    interest_feature_count = 0
-    for checks in interest.values():
-        if checks >= THRESHOLD_NO_CHECKS:
-            interest_feature_count += 1
 
-    if interest_feature_count < THRESHOLD_NO_FEATURES_INTEREST:
+    reliable_checks = 0
+    interest_feature_count = 0
+    for key, checks in learning_style.items():
+        if key != "id" and key != "user_id":
+            if checks >= THRESHOLD_NO_CHECKS:
+                interest_feature_count += 1
+            if checks >= THRESHOLD_RELIABLE_CHECKS:
+                reliable_checks += 1
+    if interest_feature_count < THRESHOLD_NO_FEATURES_INTEREST or reliable_checks == 0:
         return False
 
     return True
