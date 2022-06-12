@@ -10,9 +10,9 @@ Y = dataset.iloc[:, 18]
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=0)
 
 parameters = {
-    "random_state": 82,
+    "random_state": 8,
     "max_depth": 10,
-    "n_estimators": 72,
+    "n_estimators": 94,
 }
 
 random_forest_classifier = RandomForestClassifier(random_state=parameters["random_state"],
@@ -29,10 +29,6 @@ y_pred = random_forest_classifier.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("OOB Score:", random_forest_classifier.oob_score_)
 
-
-for i in range(2, 19):
-    print(f"{i}-folds")
-    cross_validation_mean_score = np.mean(cross_val_score(random_forest_classifier, X_train, y_train, cv=i))
-    print("Cross Validation Score:", cross_validation_mean_score)
-
-
+# K-fold cross validation on authenticated data
+cross_validation_mean_score = np.mean(cross_val_score(random_forest_classifier, X_train, y_train, cv=8))
+print("Cross Validation Score (8-Folds):", cross_validation_mean_score)
